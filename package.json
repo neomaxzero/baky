@@ -1,0 +1,16 @@
+{
+  "name": "baky",
+  "version": "1.0.0",
+  "description": "your photo backup manager",
+  "main": "src/index.js",
+  "scripts": {
+    "test": " rm -rf runtime-test/ &&cp -r test/ runtime-test && jest"
+  },
+  "keywords": [],
+  "author": "@neomaxzero",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
