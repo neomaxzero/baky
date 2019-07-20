@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require('fs');
 
 const getFolderContent = async folder => {
   return new Promise((resolve, reject) => {
@@ -9,7 +9,11 @@ const getFolderContent = async folder => {
   });
 };
 
-const getAllFilesFrom = async (folder, includeDetails, total = []) => {
+const getAllFilesFrom = async (
+  folder,
+  includeDetails,
+  total = { details: [], list: [] },
+) => {
   const files = await getFolderContent(folder);
 
   return files.reduce(async (carry, file) => {
@@ -20,19 +24,20 @@ const getAllFilesFrom = async (folder, includeDetails, total = []) => {
       return await getAllFilesFrom(filePath, includeDetails, total);
     } else {
       const carryUpdated = await carry;
-      let info = file;
       if (includeDetails) {
-        info = {
+        carryUpdated.details.push({
           file,
-          filePath
-        };
+          filePath,
+          size: fileInfo.size,
+          id: `${file}_${fileInfo.size}`,
+        });
       }
-      carryUpdated.push(info);
+      carryUpdated.list.push(`${file}_${fileInfo.size}`);
       return carryUpdated;
     }
   }, total);
 };
 
 module.exports = {
-  getAllFilesFrom
+  getAllFilesFrom,
 };
