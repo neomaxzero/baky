@@ -4,12 +4,14 @@
   "description": "your photo backup manager",
   "main": "src/index.js",
   "scripts": {
+    "baky": "node src/cli.js",
     "test": " rm -rf runtime-test/ &&cp -r test/ runtime-test && jest"
   },
   "keywords": [],
   "author": "@neomaxzero",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.4.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
